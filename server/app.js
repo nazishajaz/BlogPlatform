@@ -4,11 +4,15 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 
+const postRoutes = require("./routes/postRoutes");
 const app = express();
 
 connectDB();
 
 app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
 
 app.get("/", (req, res) => {
     res.send("Blog Platform API is running!");
